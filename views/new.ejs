@@ -1,0 +1,20 @@
+<%- include('partials/header') %>
+<h2>New <%= type %></h2>
+<form action="/<%= type %>" method="POST">
+  Name: <input type="text" name="name" required><br>
+  <% if(type === 'supplier'){ %>
+    Address: <input type="text" name="address"><br>
+    Phone: <input type="text" name="phone"><br>
+  <% } else { %>
+    Price: <input type="number" name="price"><br>
+    Quantity: <input type="number" name="quantity"><br>
+    Supplier: 
+    <select name="supplierId">
+      <% suppliers.forEach(s => { %>
+        <option value="<%= s._id %>"><%= s.name %></option>
+      <% }) %>
+    </select><br>
+  <% } %>
+  <button type="submit">Save</button>
+</form>
+<%- include('partials/footer') %>
